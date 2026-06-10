@@ -1,0 +1,31 @@
+version: "3"
+tasks:
+  start-temporal-server:
+    desc: "Runs the Azure Cosmos Service sample"
+    cmds:
+      - temporal server start-dev
+
+  run-worker:
+    desc: "Runs the Temporal Worker that executes the workflow and activities"
+    cmds:
+      - uv run python -m temporal_openai.worker
+
+  start-workflow:
+    desc: "Starts the workflow execution"
+    cmds:
+      - uv run python -m temporal_openai.start_workflow
+
+  run-hr-agent:
+    desc: "Runs the HR A2A agent server (port 9101)"
+    cmds:
+      - uv run python -m temporal_openai.agents.hr_agent
+
+  run-faq-agent:
+    desc: "Runs the FAQ A2A agent server (port 9102)"
+    cmds:
+      - uv run python -m temporal_openai.agents.faq_agent
+
+  start-routing-workflow:
+    desc: "Starts the HR/FAQ routing workflow execution"
+    cmds:
+      - uv run python -m temporal_openai.start_routing_workflow
